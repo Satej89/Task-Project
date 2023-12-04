@@ -30,10 +30,9 @@ namespace firstproject
                 SqlCommand cmd = new SqlCommand("SELECT * from user_table2 where email='" + TextBox1.Text.Trim() + "'AND password='" + TextBox2.Text.Trim() + "'; ", con);
                 SqlCommand cmd2 = new SqlCommand("SELECT * from user_table2 where phone='" + TextBox1.Text.Trim() + "'AND password='" + TextBox2.Text.Trim() + "'; ", con);
                 SqlDataReader dr = cmd.ExecuteReader();
-
-
                 if (dr.HasRows)
                 {
+
                     while (dr.Read())
                     {
                         Response.Write("<script> alert('Login successful:= " + dr.GetValue(0).ToString() + "');</script>");
@@ -47,7 +46,7 @@ namespace firstproject
                     Response.Redirect("user_homepage.aspx");
                 }
                 SqlDataReader dr2 = cmd2.ExecuteReader();
-                if (dr2.HasRows)
+                if ( dr2.HasRows)
                 {
                     while (dr2.Read())
                     {
@@ -63,7 +62,7 @@ namespace firstproject
                 }
                 else
                 {
-                    Response.Write("<script>alert('Invalid Credentials');</script>");
+                    Response.Write("<script>alert('Invalid Credentials . Or the user status is deactive');</script>");
                 }
             }
             catch (Exception ex)
