@@ -2153,6 +2153,8 @@
     <Content Include="UserManagement.aspx" />
     <Content Include="userprofile.aspx" />
     <Content Include="user_homepage.aspx" />
+    <Content Include="user_images\user.png" />
+    <Content Include="user_images\img1.png" />
     <Content Include="Web.config" />
     <Content Include="homepage.aspx" />
     <Content Include="adminLogin.aspx" />
@@ -2279,6 +2281,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

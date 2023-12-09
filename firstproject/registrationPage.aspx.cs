@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -42,17 +43,14 @@ namespace firstproject
                 {
                     con.Open();
                 }
-                SqlCommand cmd = new SqlCommand("SELECT * from user_table2 where email='" + TextBox14.Text.Trim() + "';", con);
+                SqlCommand cmd = new SqlCommand("SELECT * from user_table2 where email='" + TextBox14.Text.Trim() + "' OR phone='" + TextBox15.Text.Trim() + "' ;", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                SqlCommand cmd2 = new SqlCommand("SELECT * from user_table2 where phone='" + TextBox15.Text.Trim() + "';", con);
-                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-                DataTable dt2 = new DataTable();
-                da2.Fill(dt2);
 
 
-                if (dt.Rows.Count >= 1 || dt2.Rows.Count >= 1)
+
+                if (dt.Rows.Count >= 1)
                 {
                     return true;
 
@@ -85,6 +83,13 @@ namespace firstproject
                 {
                     con.Open();
                 }
+
+                string filepath = "~/user_images/user.png";
+                string filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                if (filename.Length > 0)
+                {
+                    filepath = "~/user_images/" + filename;
+                }
                 SqlCommand cmd = new SqlCommand("INSERT INTO user_table2 (first_name,username,last_name,email,phone,password,confirm_pass,account_status) values(@first_name,@username,@last_name,@email,@phone,@password,@confirm_pass,@account_status)", con);
                 cmd.Parameters.AddWithValue("@first_name", TextBox12.Text.Trim());
                 cmd.Parameters.AddWithValue("@username", TextBox16.Text.Trim());
@@ -94,12 +99,20 @@ namespace firstproject
                 cmd.Parameters.AddWithValue("@password", TextBox17.Text.Trim());
                 cmd.Parameters.AddWithValue("@confirm_pass", TextBox18.Text.Trim());
                 cmd.Parameters.AddWithValue("@account_status", "active");
+
+
+
+
+
                 if (TextBox17.Text.Length > 0 && TextBox17.Text.Trim() == TextBox18.Text.Trim())
                 {
                     cmd.ExecuteNonQuery();
+
                     Session["role"] = "user";
                     Session["email"] = TextBox14.Text.Trim();
                     Session["phone"] = TextBox15.Text.Trim();
+                    Session["status"] = "active";
+                    Session["file"] = filepath.Trim();
                     Response.Write("<script>alert('Registration Successfull.Go to User Login');</script>");
                     Response.Redirect("user_homepage.aspx");
                 }
@@ -107,6 +120,7 @@ namespace firstproject
                 {
                     Response.Write("<script>alert('Please Enter a Valid Passowrd');</script>");
                 }
+
                 con.Close();
 
 

@@ -1,6 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="registrationPage.aspx.cs" Inherits="firstproject.registrationPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        function readurl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgview').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section>
@@ -9,13 +22,23 @@
                 <div class="h1 m-4 d-flex justify-content-center align-items-center fw-normal">
                     Register Here
                 </div>
+                <div class="row">
+
+                    <div class="col">
+                        <center>
+                            <div style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
+                                <img id="imgview" style="width: 100%; height: 100%; object-fit: cover;" src="user_images/user.png" />
+                            </div>
+                        </center>
+                    </div>
+                </div>
                 <div class="row p-2">
                     <div class="col">
                         <label for="ContentPlaceHolder1_TextBox12" class="h4 mb-0 fw-normal">
                             First Name
                         </label>
                         <div class="form-group">
-                            <asp:TextBox Class="form-control" ID="TextBox12" runat="server" placeholder="first name"  ></asp:TextBox>
+                            <asp:TextBox Class="form-control" ID="TextBox12" runat="server" placeholder="first name"></asp:TextBox>
                         </div>
                     </div>
                     <div class="col">
@@ -60,7 +83,7 @@
                     <label for="ContentPlaceHolder1_FileUpload1" class="form-label h4 mb-1 fw-normal">Upload Profile Picture</label>
 
 
-                    <asp:FileUpload class="form-control" ID="FileUpload1" runat="server" />
+                    <asp:FileUpload onchange="readurl(this);" class="form-control" ID="FileUpload1" runat="server" />
                 </div>
                 <div class="form-group d-grid ">
 

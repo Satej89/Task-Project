@@ -67,7 +67,7 @@ namespace firstproject
             }
             else
             {
-                Response.Write("<script>alert('Not Logged in to Your1  Account');</script>");
+                Response.Write("<script>alert('Not logged in');</script>");
                 //Response.Redirect("homepage.aspx");
             }
 

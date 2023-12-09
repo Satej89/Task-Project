@@ -30,6 +30,7 @@ namespace firstproject
                         LinkButton10.Visible = false;
                         Link_userpage.Visible = true;
                         Link_homepage.Visible = false;
+                        LinkButton41.Visible = false;
 
                     }
                     else if ((Session["role"].Equals("admin")))
@@ -37,13 +38,16 @@ namespace firstproject
                         LinkButton1.Visible = false;
                         LinkButton2.Visible = false;
                         LinkButton3.Visible = true;
-                        LinkButton4.Visible = true;
-                        LinkButton4.Text = "Hello admin";
+                        //LinkButton4.Visible = true;
+                        //LinkButton4.Text = "Hello admin";
 
                         LinkButton6.Visible = false;
                         LinkButton10.Visible = true;
                         Link_userpage.Visible = false;
                         Link_homepage.Visible = true;
+                        LinkButton41.Visible = true;
+                        LinkButton412.Visible = true;
+
                     }
                 }
                 else
@@ -57,6 +61,8 @@ namespace firstproject
                     LinkButton10.Visible = false;
                     Link_userpage.Visible = false;
                     Link_homepage.Visible = true;
+                    LinkButton41.Visible = true;
+
                 }
 
 
