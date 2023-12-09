@@ -28,28 +28,25 @@ namespace firstproject
         protected void LinkButton41_Click(object sender, EventArgs e)
         {
             Status_to_change("active");
-            get_user();
-            Response.Write("<script>alert('in pending  function');</script>");
+
         }
         //yellow or pending button
         protected void LinkButton42_Click(object sender, EventArgs e)
         {
-            Status_to_change("pending");           
-            get_user();
-            Response.Write("<script>alert('in pending  function');</script>");
+            Status_to_change("pending");
+
         }
         //red or deactivate button
         protected void LinkButton43_Click(object sender, EventArgs e)
         {
             Status_to_change("deactive");
-            get_user();
-            Response.Write("<script>alert('in deactive  function');</script>");
+
 
         }
         //delete button
         protected void Button2_Click(object sender, EventArgs e)
         {
-
+            delete_user();
         }
         void get_user()
         {
@@ -84,7 +81,7 @@ namespace firstproject
                 {
                     Response.Write("<script>alert('There is no such element that have you entered email id');</script>");
                 }
-                 
+
             }
             catch (Exception ex)
             {
@@ -93,7 +90,7 @@ namespace firstproject
         }
         void Status_to_change(string stat)
         {
-            
+
             try
             {
                 SqlConnection con = new SqlConnection(strcon);
@@ -108,18 +105,16 @@ namespace firstproject
 
                 if (dr.HasRows)
                 {
-                    
+
                     while (dr.Read())
                     {
-                        
+
                         SqlCommand cmd2 = new SqlCommand("UPDATE user_table2 SET account_status='" + stat + "'where email='" + TextBox1.Text + "'OR phone='" + TextBox1.Text + "'; ", con);
                         SqlDataReader dr2 = cmd2.ExecuteReader();
-                         
-                        //Response.Write("<script>alert('status changed');</script>");
-                        //TextBox2.Attributes["value"] = "testing";
-                        //TextBox2.Attributes["value"] = stat;
-                        Response.Write("<script>alert('The status has been changed to ");
-                        //Response.Redirect(Request.RawUrl);
+
+
+                        Response.Write("<script>alert('The status of the user has been updated.'); window.location='" + Request.RawUrl + "';</script>");
+
                     }
                 }
                 else
@@ -127,6 +122,52 @@ namespace firstproject
                     Response.Write("<script>alert('Invalid Credentials');</script>");
                 }
 
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+        void delete_user()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                if (con.State == System.Data.ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                if (TextBox2.Text.Length > 0)
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * from user_table2 where email='" + TextBox1.Text + "'OR phone='" + TextBox1.Text + "'; ", con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+                    if (dr.HasRows)
+                    {
+
+                        while (dr.Read())
+                        {
+
+                            SqlCommand cmd2 = new SqlCommand("DELETE FROM user_table2 where email='" + TextBox1.Text + "'OR phone='" + TextBox1.Text + "'; ", con);
+                            SqlDataReader dr2 = cmd2.ExecuteReader();
+
+
+                            Response.Write("<script>alert('The  User has been DELETED.'); window.location='" + Request.RawUrl + "';</script>");
+
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Invalid Credentials . Enter the Email id or Phone');</script>");
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('Enter the Email id or Phone in Search Box');</script>");
+                }
             }
             catch (Exception ex)
             {

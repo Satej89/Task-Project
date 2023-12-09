@@ -72,7 +72,7 @@ namespace firstproject
                     con.Open();
                 }
                 SqlCommand cmd = new SqlCommand("UPDATE user_table2 SET first_name = '" + TextBox12.Text.Trim() + "'  ,last_name ='" + TextBox13.Text.Trim() + "'   , email='" + TextBox14.Text.Trim() + "'  ,username='" + TextBox16.Text.Trim() + "'  , phone='" + TextBox15.Text.Trim() + "'  ,password = '" + TextBox18.Text.Trim() + "' ,confirm_pass= '" + TextBox20.Text.Trim() + "' WHERE email= '" + TextBox14.Text.Trim() + "' ;", con);
-                if (TextBox18.Text.Length == 0 && TextBox20.Text.Length == 0) 
+                if (TextBox18.Text.Length == 0 && TextBox20.Text.Length == 0)
                 {
                     Response.Write("<script>alert('The data can only update if you enter new password or old password in new place');</script>");
                     TextBox18.Attributes["value"] = TextBox17.Attributes["value"];
@@ -84,13 +84,14 @@ namespace firstproject
                 }
                 else if (TextBox18.Text.Length > 0 && TextBox18.Text.Trim() == TextBox20.Text.Trim())
                 {
+                    
                     cmd.ExecuteNonQuery();
                     Session["role"] = "user";
                     Session["email"] = TextBox14.Text.Trim();
                     Session["phone"] = TextBox15.Text.Trim();
                     Session["status"] = "active";
                     Response.Write("<script>alert('Updated Details Successfully.');</script>");
-                    Response.Redirect("homepage.aspx");
+                    
                 }
                 else
                 {
