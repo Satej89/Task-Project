@@ -1,13 +1,28 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="userprofile.aspx.cs" Inherits="firstproject.userprofile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        function readurl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Update the 'imgview' src attribute
+                    document.getElementById('<%= imgview.ClientID %>').src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <section>
         <div class="max-width12 mx-auto12 px12   flex12 flex-col12 justify-center12">
             <div class="bg-body border rounded-2 m-2 p-4  ">
                 <div class="m-1 mb-0 d-flex justify-content-center">
-                    <asp:Image ID="imgview" style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;" runat="server" />
+                    <asp:Image ID="imgview" Style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;" runat="server" />
                 </div>
                 <div class="h1 m-4 mt-0 mb-1 d-flex justify-content-center align-items-center fw-normal">
                     Your Profile
@@ -79,7 +94,7 @@
                     <label for="ContentPlaceHolder1_FileUpload1" class="form-label h4 mb-1 fw-normal">Upload New or Update Profile Picture</label>
 
 
-                    <asp:FileUpload class="form-control" ID="FileUpload1" runat="server" />
+                    <asp:FileUpload onchange="readurl(this);" class="form-control" ID="FileUpload1" runat="server" />
                 </div>
                 <div class="  mx-auto d-flex justify-content-center align-items-center">
                     <div class="form-group   ">

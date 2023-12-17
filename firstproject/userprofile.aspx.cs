@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -40,6 +41,7 @@ namespace firstproject
                             TextBox17.Attributes["value"] = dr.GetValue(5).ToString();
                             Link_status.Text = dr.GetValue(7).ToString();
                             Session["file"] = dr.GetValue(8).ToString();
+                            Session["email"] = dr.GetValue(3).ToString();
                         }
                     }
                     if (!IsPostBack)
@@ -76,6 +78,7 @@ namespace firstproject
 
 
         }
+        // Update function
         protected void Button21_Click(object sender, EventArgs e)
         {
             try
@@ -86,7 +89,16 @@ namespace firstproject
                 {
                     con.Open();
                 }
-                SqlCommand cmd = new SqlCommand("UPDATE user_table2 SET first_name = '" + TextBox12.Text.Trim() + "'  ,last_name ='" + TextBox13.Text.Trim() + "'   , email='" + TextBox14.Text.Trim() + "'  ,username='" + TextBox16.Text.Trim() + "'  , phone='" + TextBox15.Text.Trim() + "'  ,password = '" + TextBox18.Text.Trim() + "' ,confirm_pass= '" + TextBox20.Text.Trim() + "' WHERE email= '" + TextBox14.Text.Trim() + "' ;", con);
+                string filepath= Session["file"] as string;
+                string filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
+
+                if(filename.Length > 0)
+                {
+                    filepath = "~/user_images/" + filename;
+                }
+
+                // Sql command for updation
+                SqlCommand cmd = new SqlCommand("UPDATE user_table2 SET first_name = '" + TextBox12.Text.Trim() + "'  ,last_name ='" + TextBox13.Text.Trim() + "'   , email='" + TextBox14.Text.Trim() + "'  ,username='" + TextBox16.Text.Trim() + "'  , phone='" + TextBox15.Text.Trim() + "'  ,password = '" + TextBox18.Text.Trim() + "' ,confirm_pass= '" + TextBox20.Text.Trim() + "' , file_path= '" + filepath.Trim() + "'  WHERE email= '" + Session["email"] + "' ;", con);
                 if (TextBox18.Text.Length == 0 && TextBox20.Text.Length == 0)
                 {
                     Response.Write("<script>alert('The data can only update if you enter new password or old password in new place');</script>");
@@ -99,14 +111,17 @@ namespace firstproject
                 }
                 else if (TextBox18.Text.Length > 0 && TextBox18.Text.Trim() == TextBox20.Text.Trim())
                 {
-                    
+
                     cmd.ExecuteNonQuery();
                     Session["role"] = "user";
                     Session["email"] = TextBox14.Text.Trim();
                     Session["phone"] = TextBox15.Text.Trim();
                     Session["status"] = "active";
+                    Session["file"] = filepath.Trim();
                     Response.Write("<script>alert('Updated Details Successfully.');</script>");
-                    
+                     
+                    Response.Redirect("userprofile.aspx");
+
                 }
                 else
                 {

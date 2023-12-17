@@ -29,8 +29,7 @@ namespace firstproject
             }
             else
             {
-                //check_fuctionality();
-
+                 
                 user_registration();
 
             }
@@ -70,10 +69,7 @@ namespace firstproject
             }
 
         }
-        void check_fuctionality()
-        {
-
-        }
+        
 
         void user_registration()
         {
@@ -94,7 +90,7 @@ namespace firstproject
                 {
                     filepath = "~/user_images/" + filename;
                 }
-                Response.Write("<script>alert('" + filepath + "');</script>");
+                
                 SqlCommand cmd = new SqlCommand("INSERT INTO user_table2 (first_name,username,last_name,email,phone,password,confirm_pass,account_status,file_path) values(@first_name,@username,@last_name,@email,@phone,@password,@confirm_pass,@account_status,@file_path)", con);
                 cmd.Parameters.AddWithValue("@first_name", TextBox12.Text.Trim());
                 cmd.Parameters.AddWithValue("@username", TextBox16.Text.Trim());
