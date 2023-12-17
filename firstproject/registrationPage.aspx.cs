@@ -29,6 +29,8 @@ namespace firstproject
             }
             else
             {
+                //check_fuctionality();
+
                 user_registration();
 
             }
@@ -68,7 +70,7 @@ namespace firstproject
             }
 
         }
-        void link_homepage()
+        void check_fuctionality()
         {
 
         }
@@ -86,11 +88,14 @@ namespace firstproject
 
                 string filepath = "~/user_images/user.png";
                 string filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
+
+
                 if (filename.Length > 0)
                 {
                     filepath = "~/user_images/" + filename;
                 }
-                SqlCommand cmd = new SqlCommand("INSERT INTO user_table2 (first_name,username,last_name,email,phone,password,confirm_pass,account_status) values(@first_name,@username,@last_name,@email,@phone,@password,@confirm_pass,@account_status)", con);
+                Response.Write("<script>alert('" + filepath + "');</script>");
+                SqlCommand cmd = new SqlCommand("INSERT INTO user_table2 (first_name,username,last_name,email,phone,password,confirm_pass,account_status,file_path) values(@first_name,@username,@last_name,@email,@phone,@password,@confirm_pass,@account_status,@file_path)", con);
                 cmd.Parameters.AddWithValue("@first_name", TextBox12.Text.Trim());
                 cmd.Parameters.AddWithValue("@username", TextBox16.Text.Trim());
                 cmd.Parameters.AddWithValue("@last_name", TextBox13.Text.Trim());
@@ -99,14 +104,40 @@ namespace firstproject
                 cmd.Parameters.AddWithValue("@password", TextBox17.Text.Trim());
                 cmd.Parameters.AddWithValue("@confirm_pass", TextBox18.Text.Trim());
                 cmd.Parameters.AddWithValue("@account_status", "active");
-
-
+                cmd.Parameters.AddWithValue("@file_path", filepath);
 
 
 
                 if (TextBox17.Text.Length > 0 && TextBox17.Text.Trim() == TextBox18.Text.Trim())
                 {
                     cmd.ExecuteNonQuery();
+
+                    if (FileUpload1.HasFile)
+                    {
+                        try
+                        {
+                            string filename1 = Path.GetFileName(FileUpload1.FileName);
+                            string filepath1 = Server.MapPath("user_images/" + filename1);
+
+                            // Save the file to the "image" folder
+                            FileUpload1.SaveAs(filepath1);
+
+                            // Log success to the console
+                            string script = "console.log('File uploaded successfully.');";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "ServerMessage", script, true);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Log any exceptions to the console
+                            string script = "console.error('" + ex.Message + "');";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "ErrorMessage", script, true);
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('fiel not selected');</script>");
+                        // Continue with file processing...
+                    }
 
                     Session["role"] = "user";
                     Session["email"] = TextBox14.Text.Trim();

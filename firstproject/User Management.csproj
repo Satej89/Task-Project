@@ -2153,6 +2153,7 @@
     <Content Include="UserManagement.aspx" />
     <Content Include="userprofile.aspx" />
     <Content Include="user_homepage.aspx" />
+    <Content Include="user_images\pexels-andrea-piacquadio-837358.jpg" />
     <Content Include="user_images\user.png" />
     <Content Include="user_images\img1.png" />
     <Content Include="Web.config" />
