@@ -7,7 +7,7 @@
         <div class="max-width12 mx-auto12 px12   flex12 flex-col12 justify-center12">
             <div class="bg-body border rounded-2 m-2 p-4  ">
                 <div class="m-1 mb-0 d-flex justify-content-center">
-                    <img src="img/generaluser.png" width="150px" class="img-fluid" />
+                    <asp:Image ID="imgview" style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;" runat="server" />
                 </div>
                 <div class="h1 m-4 mt-0 mb-1 d-flex justify-content-center align-items-center fw-normal">
                     Your Profile

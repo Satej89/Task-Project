@@ -39,7 +39,22 @@ namespace firstproject
                             TextBox16.Attributes["value"] = dr.GetValue(0).ToString();
                             TextBox17.Attributes["value"] = dr.GetValue(5).ToString();
                             Link_status.Text = dr.GetValue(7).ToString();
+                            Session["file"] = dr.GetValue(8).ToString();
+                        }
+                    }
+                    if (!IsPostBack)
+                    {
+                        // Assuming Session["file"] contains the path to the image
+                        string imagePath = Session["file"] as string;
 
+                        if (!string.IsNullOrEmpty(imagePath))
+                        {
+                            imgview.ImageUrl = imagePath;
+                        }
+                        else
+                        {
+                            // Set a default image path or handle the case where the Session["file"] is not set
+                            imgview.ImageUrl = "user_images/user.png";
                         }
                     }
 

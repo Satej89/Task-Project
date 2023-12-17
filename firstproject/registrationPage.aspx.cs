@@ -119,12 +119,10 @@ namespace firstproject
                             string filename1 = Path.GetFileName(FileUpload1.FileName);
                             string filepath1 = Server.MapPath("user_images/" + filename1);
 
-                            // Save the file to the "image" folder
+                            // Save the file to the "user_image" folder
                             FileUpload1.SaveAs(filepath1);
 
-                            // Log success to the console
-                            string script = "console.log('File uploaded successfully.');";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "ServerMessage", script, true);
+
                         }
                         catch (Exception ex)
                         {

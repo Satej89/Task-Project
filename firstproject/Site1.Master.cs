@@ -8,11 +8,13 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace firstproject
 {
     public partial class Site1 : System.Web.UI.MasterPage
     {
+        string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -31,6 +33,22 @@ namespace firstproject
                         Link_userpage.Visible = true;
                         Link_homepage.Visible = false;
                         LinkButton41.Visible = false;
+                        //< img id = "imgview" style = "width: 100%; height: 100%; object-fit: cover;" src = "user_images/user.png" />
+                        if (!IsPostBack)
+                        {
+                            // Assuming Session["file"] contains the path to the image
+                            string imagePath = Session["file"] as string;
+
+                            if (!string.IsNullOrEmpty(imagePath))
+                            {
+                                imgview.ImageUrl = imagePath;
+                            }
+                            else
+                            {
+                                // Set a default image path or handle the case where the Session["file"] is not set
+                                imgview.ImageUrl = "user_images/user.png";
+                            }
+                        }
 
                     }
                     else if ((Session["role"].Equals("admin")))
@@ -118,3 +136,6 @@ namespace firstproject
         }
     }
 }
+
+
+

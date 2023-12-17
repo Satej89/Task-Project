@@ -102,9 +102,10 @@
                 </nav>
             </div>
             <div class="col-1 col-sm-1 pt-3 pb-3 d-flex justify-content-center p-0">
-                <div class=" p-0 " style="width: 50px; height: 50px; overflow: hidden; border-radius: 50%;">
-                    <asp:LinkButton class="nav-link" ID="LinkButton4" runat="server" OnClick="LinkButton4_Click" Visible="false"> 
-                    <img id="imgview" style="width: 100%; height: 100%; object-fit: cover;" src="user_images/user.png" />
+                <div class=" p-0 d-flex" style="width: 50px; height: 50px; overflow: hidden; border-radius: 50%;">
+                    <asp:LinkButton class="nav-link" ID="LinkButton4" runat="server" OnClick="LinkButton4_Click" Visible="false">
+
+                        <asp:Image ID="imgview" Style="width: 100%; height: 100%; object-fit: cover;" runat="server" />
                     </asp:LinkButton>
                     <asp:LinkButton class="nav-link" ID="LinkButton41" runat="server" Visible="false"> 
 <img id="imgview1" style="width: 100%; height: 100%; object-fit: cover;" src="user_images/user.png" />
