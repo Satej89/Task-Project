@@ -41,12 +41,12 @@
                 <nav class="navbar navbar-expand-lg navbar-light ">
                     <a class="navbar-brand" href="#">
                         <h4 class="mb-0 pt-1">
-                            <img src="img/books.png" width="30" height="30" />
-                            Website Name
+                            <img src="img/web_logo.jpg" width="50" height="50" />
+                            Website Name 
 
                         </h4>
                     </a>
-                    <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
@@ -93,7 +93,7 @@
                                   Logout
                                 </asp:LinkButton>
                             </li>
-                             
+
                         </ul>
 
                     </div>

@@ -2131,6 +2131,7 @@
     <Content Include="fontawsome\svgs\solid\yen-sign.svg" />
     <Content Include="fontawsome\svgs\solid\yin-yang.svg" />
     <Content Include="fontawsome\svgs\solid\z.svg" />
+    <Content Include="img\2339047.jpg" />
     <Content Include="img\adminuser.png" />
     <Content Include="img\book-online.png" />
     <Content Include="img\books.png" />
@@ -2147,6 +2148,7 @@
     <Content Include="img\search-online.png" />
     <Content Include="img\sign-up.png" />
     <Content Include="img\web-development_0.jpg" />
+    <Content Include="img\web_logo.jpg" />
     <Content Include="img\writer.png" />
     <Content Include="registrationPage.aspx" />
     <Content Include="userlogin.aspx" />
