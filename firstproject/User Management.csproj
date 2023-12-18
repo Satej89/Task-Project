@@ -2159,7 +2159,7 @@
     <Content Include="user_images\user.png" />
     <Content Include="user_images\img1.png" />
     <Content Include="Web.config" />
-    <Content Include="homepage.aspx" />
+    <Content Include="default.aspx" />
     <Content Include="adminLogin.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -2199,12 +2199,12 @@
     <Compile Include="userprofile.aspx.designer.cs">
       <DependentUpon>userprofile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="homepage.aspx.cs">
-      <DependentUpon>homepage.aspx</DependentUpon>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="homepage.aspx.designer.cs">
-      <DependentUpon>homepage.aspx</DependentUpon>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminLogin.aspx.cs">
       <DependentUpon>adminLogin.aspx</DependentUpon>
