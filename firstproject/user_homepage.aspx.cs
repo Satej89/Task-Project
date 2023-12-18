@@ -47,7 +47,7 @@ namespace firstproject
                                 Session["file"] = dr.GetValue(8).ToString();
                             }
                         }
-                        
+
                         if (!IsPostBack)
                         {
                             // Assuming Session["file"] contains the path to the image
@@ -73,12 +73,12 @@ namespace firstproject
                 else if (Session["role"].Equals("admin"))
                 {
                     Response.Write("<script>alert('Hello Admin');</script>");
-                    Response.Redirect("homepage.aspx");
+                    Response.Redirect("default.aspx");
                 }
                 else
                 {
                     Response.Write("<script>alert('Not Logged in to Your Account');</script>");
-                    Response.Redirect("homepage.aspx");
+                    Response.Redirect("default.aspx");
                 }
             }
             else

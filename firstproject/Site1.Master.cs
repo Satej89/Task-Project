@@ -33,7 +33,7 @@ namespace firstproject
                         Link_userpage.Visible = true;
                         Link_homepage.Visible = false;
                         LinkButton41.Visible = false;
-                         
+
                         if (!IsPostBack)
                         {
                             // Assuming Session["file"] contains the path to the image
@@ -57,14 +57,14 @@ namespace firstproject
                         LinkButton2.Visible = false;
                         LinkButton3.Visible = true;
                         //LinkButton4.Visible = true;
-                         
+
 
                         LinkButton6.Visible = false;
                         LinkButton10.Visible = true;
                         Link_userpage.Visible = false;
                         Link_homepage.Visible = true;
                         LinkButton41.Visible = true;
-                       
+
 
                         if (!IsPostBack)
                         {
@@ -121,7 +121,7 @@ namespace firstproject
         protected void LinkButton3_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("homepage.aspx");
+            Response.Redirect("default.aspx");
 
         }
 
@@ -136,7 +136,7 @@ namespace firstproject
         }
         protected void Link_homepagebtn(object sender, EventArgs e)
         {
-            Response.Redirect("homepage.aspx");
+            Response.Redirect("default.aspx");
 
         }
     }

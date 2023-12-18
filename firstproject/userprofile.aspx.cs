@@ -69,7 +69,7 @@ namespace firstproject
             else if (Session["role"].Equals("admin"))
             {
                 Response.Write("<script>alert('Hello Admin');</script>");
-                Response.Redirect("homepage.aspx");
+                Response.Redirect("default.aspx");
             }
             else
             {
@@ -89,10 +89,10 @@ namespace firstproject
                 {
                     con.Open();
                 }
-                string filepath= Session["file"] as string;
+                string filepath = Session["file"] as string;
                 string filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
 
-                if(filename.Length > 0)
+                if (filename.Length > 0)
                 {
                     filepath = "~/user_images/" + filename;
                 }
@@ -119,7 +119,7 @@ namespace firstproject
                     Session["status"] = "active";
                     Session["file"] = filepath.Trim();
                     Response.Write("<script>alert('Updated Details Successfully.');</script>");
-                     
+
                     Response.Redirect("userprofile.aspx");
 
                 }

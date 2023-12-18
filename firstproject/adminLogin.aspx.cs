@@ -39,7 +39,7 @@ namespace firstproject
                         Session["role"] = "admin";
 
                     }
-                    Response.Redirect("homepage.aspx");
+                    Response.Redirect("default.aspx");
                 }
                 else
                 {
