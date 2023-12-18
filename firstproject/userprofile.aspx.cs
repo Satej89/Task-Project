@@ -127,6 +127,7 @@ namespace firstproject
                 {
                     Response.Write("<script>alert('Please Enter a Valid Passowrd');</script>");
                 }
+                Response.Redirect("userprofile.aspx");
                 con.Close();
 
 
